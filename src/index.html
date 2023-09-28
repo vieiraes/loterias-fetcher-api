@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LotoFacil Data Fetcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #output {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>LotoFacil Data Fetcher</h1>
+        <label for="concInicial">Concurso Inicial:</label>
+        <input type="text" id="concInicial" placeholder="Digite o número do concurso inicial">
+        <br>
+        <label for="concFinal">Concurso Final:</label>
+        <input type="text" id="concFinal" placeholder="Digite o número do concurso final">
+        <br>
+        <label for="exportarArquivo">Exportar Arquivo:</label>
+        <input type="checkbox" id="exportarArquivo">
+        <br>
+        <button id="fetchData">Fetch Data</button>
+        <div id="output">
+            <textarea id="resultTextArea" rows="10" cols="50" readonly></textarea>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fetchDataButton = document.getElementById("fetchData");
+            const resultTextArea = document.getElementById("resultTextArea");
+
+            fetchDataButton.addEventListener("click", async () => {
+                try {
+                    const concInicial = document.getElementById("concInicial").value;
+                    const concFinal = document.getElementById("concFinal").value;
+                    const exportarArquivo = document.getElementById("exportarArquivo").checked;
+
+                    let resultadoFinal = "";
+
+                    for (let index = concInicial; index <= concFinal; index++) {
+                        const url = `https://apiloterias.com.br/app/resultado?loteria=lotofacil&token=${process.env.TOKEN}&concurso=${index}`;
+
+                        try {
+                            const result = await fetchData(url);
+                            resultadoFinal += `Concurso ${index}: ${result}\n`;
+                        } catch (error) {
+                            console.error('Erro:', error);
+                        }
+                    }
+
+                    resultTextArea.value = resultadoFinal;
+
+                    if (exportarArquivo) {
+                        // Se o usuário optar por exportar o arquivo, você pode adicionar aqui o código para salvar os dados em um arquivo.
+                        // Lembre-se de atualizar esta parte com o código específico para salvar em arquivo.
+                        console.log("Dados exportados para arquivo.");
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
