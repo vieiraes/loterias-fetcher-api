@@ -26,7 +26,7 @@ TOKEN=suafraesecreta123
 
 ```
 
-##Uso
+## Uso
 
 Você pode personalizar o intervalo de concursos que deseja buscar, editando as variáveis concInicial e concFinal no código.
 
@@ -47,10 +47,10 @@ npm start
 
 Os resultados serão exibidos no console e, se desejar, você pode exportá-los para um arquivo chamado dados.txt.
 
-##Contribuições
+## Contribuições
 
 Sinta-se à vontade para contribuir com melhorias neste script. Basta fazer um fork deste repositório, fazer as alterações desejadas e criar um pull request.
 
-##Licença
+## Licença
 
 Este projeto está licenciado sob a Licença MIT - consulte o arquivo LICENSE para obter detalhes.
