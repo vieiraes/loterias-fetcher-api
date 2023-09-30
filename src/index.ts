@@ -2,10 +2,12 @@ require('dotenv').config()
 import axios from 'axios'
 import fs from 'fs'
 
+import { router } from './api'
+
 
 function criaArray(): string[] {
     let concInicial: number = 1
-    let concFinal: number = 3
+    let concFinal: number = 2915
     let arrayConcursos: string[] = []
     for (let index: number = concInicial; index <= concFinal; index++) {
         arrayConcursos.push(index.toString())
