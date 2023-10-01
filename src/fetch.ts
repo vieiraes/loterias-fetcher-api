@@ -56,12 +56,12 @@ export async function run() {
     return arrayMatriz
 }
 
-// run().then((arrayMatriz) => {
-//     console.log(arrayMatriz);
-//     const resultado = gravaNoArquivo(arrayMatriz.join('\n'))
-//     if (resultado) {
-//         console.log('Dados gravados com sucesso.');
-//     } else {
-//         console.error('Erro ao gravar os dados.');
-//     }
-// })
+run().then((arrayMatriz) => {
+    console.log(arrayMatriz);
+    const resultado = gravaNoArquivo(arrayMatriz.join('\n'))
+    if (resultado) {
+        console.log('Dados gravados com sucesso.');
+    } else {
+        console.error('Erro ao gravar os dados.');
+    }
+})

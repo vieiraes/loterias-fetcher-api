@@ -1,12 +1,17 @@
 {
-  "name": "lotofacil-api",
+  "name": "loterias-fetcher-api",
   "version": "1.0.0",
   "main": "index.js",
   "license": "UNLICENSED",
+  "author": {
+    "email": "vieira.es@gmail.com",
+    "name": "Bruno Vieira"
+  },
   "scripts": {
-    "dev": "nodemon src/server.ts",
-    "api": "nodemon src/api.ts",
-    "fetch": "nodemon src/fetch.ts"
+    "build": "tsc",
+    "start": "npm run dev",
+    "dev": "nodemon src/server.ts"    
+    
   },
   "devDependencies": {
     "@types/express": "^4.17.18",

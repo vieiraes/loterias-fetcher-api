@@ -1,56 +1,77 @@
-# Lotofácil Data Fetcher
+# Loterias Fetcher API
 
-Este é um script em TypeScript que busca resultados da Lotofácil em uma faixa de concursos especificada e permite exportar os dados para um arquivo.
+A Loterias Fetcher API é uma API simples para consultar resultados de loterias. Ela permite capturar resultados de sorteios de diferentes loterias e exportar os resultados em um arquivo de texto.
 
-## Requisitos
+## Rotas
 
-- Node.js instalado no seu ambiente.
+### Capturar Resultado de Sorteio
 
-## Instalação
+Endpoint: `POST /lottery/capture`
 
-1. Clone ou faça o download deste repositório para o seu computador.
+Esta rota permite capturar o resultado de um sorteio de loteria específico.
 
-2. Navegue até a pasta do projeto no terminal.
+**Parâmetros da Solicitação**:
 
-3. Execute o seguinte comando para instalar as dependências necessárias:
+- `lottery` (string): O nome da loteria (ex: "megasena").
+- `lotteryDraw` (string): O número do sorteio desejado.
 
-   ```shell
-   npm install
+**Exemplo de Solicitação**:
 
-Configure suas variáveis de ambiente. Crie um arquivo .env na pasta do projeto e defina a variável TOKEN com seu token de acesso à API.
-
-Exemplo do arquivo .env:
-
-```
-TOKEN=suafraesecreta123
-
+```json
+{
+  "lottery": "megasena",
+  "lotteryDraw": "2356"
+}
 ```
 
-## Uso
+**Exemplo de Resposta**:
 
-Você pode personalizar o intervalo de concursos que deseja buscar, editando as variáveis concInicial e concFinal no código.
-
-
-```
-let concInicial: number = 1
-let concFinal: number = 3
-
-```
-
-Para executar o script, use o seguinte comando:
-
-```
-npm start
-
+```json
+{
+  "lottery": "megasena",
+  "lotteryDraw": "2356",
+  "numbers": "06 15 20 39 41 49"
+}
 ```
 
+### [em desenvolvimento] Exportar Resultados em um Arquivo
 
-Os resultados serão exibidos no console e, se desejar, você pode exportá-los para um arquivo chamado dados.txt.
+Endpoint: `GET /lottery/export`
 
-## Contribuições
+Esta rota permite exportar os resultados de um intervalo de sorteios de loteria para um arquivo de texto.
 
-Sinta-se à vontade para contribuir com melhorias neste script. Basta fazer um fork deste repositório, fazer as alterações desejadas e criar um pull request.
+**Parâmetros da Solicitação**:
 
-## Licença
+- `lottery` (string): O nome da loteria (ex: "quina").
+- `initialDraw` (string): O número do primeiro sorteio no intervalo.
+- `finalDraw` (string): O número do último sorteio no intervalo.
 
-Este projeto está licenciado sob a Licença MIT - consulte o arquivo LICENSE para obter detalhes.
+**Exemplo de Solicitação**:
+
+```
+/lottery/export?lottery=quina&initialDraw=1000&finalDraw=1010
+```
+
+## Como Executar
+
+1. Clone este repositório para sua máquina.
+2. Instale as dependências com `npm install`.
+3. Configure as variáveis de ambiente em um arquivo `.env` (veja o arquivo `.env.example` para referência).
+4. Inicie o servidor com `npm start`.
+
+## Dependências
+
+- Express: Framework web para Node.js.
+- Axios: Cliente HTTP para fazer solicitações.
+- Dotenv: Carregar variáveis de ambiente a partir de um arquivo `.env`.
+- Nodemon: Reiniciar automaticamente o servidor durante o desenvolvimento.
+- TypeScript: Linguagem de programação.
+- Gitmoji-cli: Adicionar emojis aos commits do Git.
+
+## Autor
+
+Bruno Vieira - [vieira.es@gmail.com](mailto:vieira.es@gmail.com)
+
+---
+
+Esta é uma documentação básica para a Loterias Fetcher API. Você pode personalizá-la e expandi-la com informações adicionais, como instruções de instalação, configuração do ambiente de produção, exemplos de solicitações e muito mais, dependendo das necessidades do seu projeto. Certifique-se de manter sua documentação atualizada à medida que o projeto evolui.
